@@ -7,6 +7,22 @@ $("#currentDay").append(leaddate);
 //var currenthour = 14; use for testing change of time
 var currenthour = moment(now).format("HH");
 
+// var timeslotkeyls = localStorage.getItem(key);
+ // var timeslotkeypi = parseInt(timeslotkeyls);
+var userupdatesarray = localStorage.getItem('newtask');
+var userupdatesarrayparsed = JSON.parse(userupdatesarray);
+console.log(userupdatesarrayparsed);
+console.log(userupdatesarray);
+
+//function placeuserudates () {
+// if (timelotsvalue = parseInt(usertimeslotKey.value)) {
+
+
+// }
+//}
+
+
+
 // assign the current class to the hour in the class name
 var timeslots = [
   {
@@ -66,6 +82,9 @@ var timeslots = [
   },
 ];
 //
+  
+// 
+
 //function activitybackgroundcolor() {
 
 // loop through all times to reset appropriate "present", "past", "future"
@@ -96,21 +115,31 @@ for (let i = 0; i < timeslots.length; i++) {
 $(".saveBtn").on("click", function () {
   var savedtaskInput = $(this).siblings("textarea").val().trim();
   var timeslotkey = $(this).siblings()[1].className.slice(17, 19);
-  console.log(savedtaskInput);
-  console.log(timeslotkey);
-  console.log("button clicked");
-  if (timeslotkey == timeslots[4].timeslotvalue) {
-    (timeslots[4].taskInput = savedtaskInput);
-    console.log("criteriamet");
-    console.log(timeslots[4].taskInput);
-  } else {
-  console.log("criteria Failed")};
-  //localStorage.setItem(timeslotkey,savedtaskInput);
-});
+  var userrevisedtasks = { 
+    usertimeslotKey: timeslotkey,
+    usertaskInput: savedtaskInput,
+  };
 
+  window.localStorage.setItem('newtask',JSON.stringify(userrevisedtasks));
+});
+  
+  //localStorage.setItem(timeslotkeyint,savedtaskInput);
+
+ // var timeslotkeyls = localStorage.getItem(key);
+ // var timeslotkeypi = parseInt(timeslotkeyls);
+ // var savedtaskInputls = localStorage.getItem(value);
+ // console.log(timeslotkeypi);
+ // console.log(savedtaskInputls);
 
 //push the local storage into the vartimeslots array
 //check for match of key item and identifier in array
 //push item into array
+// to clean out localStorage.clear();
+//if (timeslotkeyint === timeslots[4].timeslotvalue) {
+//  (timeslots[4].taskInput = savedtaskInput);
+//  console.log("criteriamet");
+//  console.log(timeslots[4].taskInput);
+// } else {
+// console.log("criteria Failed")};
 
 //push to innerHTML to appear upon refresh
