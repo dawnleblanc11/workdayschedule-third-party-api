@@ -1,97 +1,116 @@
-
 var now = moment();
 // to match sample need Day of the week full spelling , month full spelling date with st, nd...
 var leaddate = moment(now).format("dddd, MMMM Do");
 // don't forget # in jquery
 $("#currentDay").append(leaddate);
 // create a current hour field to create the colors required
-var currenthour = 14;
-//var currenthour = moment(now).format("HH");
+//var currenthour = 14; use for testing change of time
+var currenthour = moment(now).format("HH");
 
 // assign the current class to the hour in the class name
 var timeslots = [
   {
     timeslotclass: ".background8AMrow",
-    timeslotvalue: 8
+    timeslotvalue: 8,
+    taskInput: "",
   },
   {
     timeslotclass: ".background9AMrow",
-    timeslotvalue: 9
+    timeslotvalue: 9,
+    taskInput: "",
   },
   {
     timeslotclass: ".background10AMrow",
-    timeslotvalue: 10
+    timeslotvalue: 10,
+    taskInput: "",
   },
   {
     timeslotclass: ".background11AMrow",
-    timeslotvalue: 11
+    timeslotvalue: 11,
+    taskInput: "",
   },
   {
     timeslotclass: ".background12PMrow",
-    timeslotvalue: 12
+    timeslotvalue: 12,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background1PMrow",
-    timeslotvalue: 13
+    timeslotclass: ".background13PMrow",
+    timeslotvalue: 13,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background2PMrow",
-    timeslotvalue: 14
+    timeslotclass: ".background14PMrow",
+    timeslotvalue: 14,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background3PMrow",
-    timeslotvalue: 15
+    timeslotclass: ".background15PMrow",
+    timeslotvalue: 15,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background4PMrow",
-    timeslotvalue: 16
+    timeslotclass: ".background16PMrow",
+    timeslotvalue: 16,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background5PMrow",
-    timeslotvalue: 17
+    timeslotclass: ".background17PMrow",
+    timeslotvalue: 17,
+    taskInput: "",
   },
   {
-    timeslotclass: ".background6PMrow",
-    timeslotvalue: 18
+    timeslotclass: ".background18PMrow",
+    timeslotvalue: 18,
+    taskInput: "",
   },
 ];
-// loop through all times to remove class names "present", "past", "future"
+//
 //function activitybackgroundcolor() {
- // timeslots.forEach(backgroundrowItem => {
- //   timeslots.remove('past','present','future')
- // })
-//}
-//timeslots.class.forEach ($("timeslotclass") => {
-//  remove('past','present','future') });
+
 // loop through all times to reset appropriate "present", "past", "future"
-// if current hour== class name hour .addclass "present"
+// if current hour= class name hour .addclass "present"
 // if current hour< class name hour .addclass "past"
-// if curren hour > class name hour .addclass "future"
+// if current hour > class name hour .addclass "future"
 // set up as a function to refresh how often?
-for (let i=0; i < timeslots.length; i++) {
-  //clean out other old classes
+for (let i = 0; i < timeslots.length; i++) {
+  //loop through all times to remove class names "present", "past", "future"
   $(timeslots[i].timeslotclass).removeClass("past present future");
-// put in appropriate class based on hour
-if (timeslots[i].timeslotvalue < currenthour) 
-{ console.log("past");
-$(timeslots[i].timeslotclass).addClass("past")}
- else if (timeslots[i].timeslotvalue > currenthour) 
- { console.log("future");
- $(timeslots[i].timeslotclass).addClass("future")}
-  else
-  {console.log("present");
-  $(timeslots[i].timeslotclass).addClass("present")};
+  // put in appropriate class based on hour
+  if (timeslots[i].timeslotvalue < currenthour) {
+    console.log("past");
+    $(timeslots[i].timeslotclass).addClass("past");
+  } else if (timeslots[i].timeslotvalue > currenthour) {
+    console.log("future");
+    $(timeslots[i].timeslotclass).addClass("future");
+  } else {
+    console.log("present");
+    $(timeslots[i].timeslotclass).addClass("present");
+  }
 };
 
 //add a new task
-$(".savebtn").on("click", function() {
-  var text = $(this).text().trim();
-  console.log(text);
+//recognize save button click
+//creates a key and value to send to storage
+
+$(".saveBtn").on("click", function () {
+  var savedtaskInput = $(this).siblings("textarea").val().trim();
+  var timeslotkey = $(this).siblings()[1].className.slice(17, 19);
+  console.log(savedtaskInput);
+  console.log(timeslotkey);
+  console.log("button clicked");
+  if (timeslotkey == timeslots[4].timeslotvalue) {
+    (timeslots[4].taskInput = savedtaskInput);
+    console.log("criteriamet");
+    console.log(timeslots[4].taskInput);
+  } else {
+  console.log("criteria Failed")};
+  //localStorage.setItem(timeslotkey,savedtaskInput);
 });
 
 
+//push the local storage into the vartimeslots array
+//check for match of key item and identifier in array
+//push item into array
 
-
-
-
-
+//push to innerHTML to appear upon refresh
