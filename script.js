@@ -9,7 +9,10 @@ var currenthour = moment(now).format("HH");
 
 // var timeslotkeyls = localStorage.getItem(key);
  // var timeslotkeypi = parseInt(timeslotkeyls);
-var userupdatesarray = localStorage.getItem('newtask');
+ function AutoRefresh( t ) {
+  setTimeout("location.reload(true);", t);
+ };
+ var userupdatesarray[] = localStorage.getItem('newtask');
 var userupdatesarrayparsed = JSON.parse(userupdatesarray);
 
 console.log(userupdatesarrayparsed);
