@@ -1,6 +1,6 @@
 # Projecty Title: workdayschedule-third-party-api
 Workday scheduler using 3rd Party API functionality
-![workday schedule page](assets/images/Code-Quiz-with-Web-APIs_index.html.png)
+![workday schedule page](WorkDaySchedul.png)
 ## Description
 This application is designed for employees with a busy schedule.  It allows them to add important events to a daily planner and manage time effectively.  They can also keep track of where they are in their day with color coding.
 
