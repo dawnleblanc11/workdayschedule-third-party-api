@@ -1,4 +1,4 @@
-# Projecty Title: workdayschedule-third-party-api
+# Project Title: workdayschedule-third-party-api
 Workday scheduler using 3rd Party API functionality
 ![workday schedule page](WorkDaySchedul.png)
 ## Description
