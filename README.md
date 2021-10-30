@@ -35,6 +35,11 @@ All verification of usage was completed on a Google Chrome browser.
 
 ## Authors
 Inital Code from Bootcamp
+
+Revisions Dawn LeBlanc 10-2021
+
+## Version History
+
 1.0 Inital Commit
 1.1 Update README.MD
 1.2 Inital Code Current Date
@@ -46,33 +51,6 @@ Inital Code from Bootcamp
 1.8 Change task storage
 1.9 Add refresh function
 1.10 Fixed saving task feature
-
-Revisions Dawn LeBlanc 10-2021
-
-## Version History
-1.0 Inital Code outline
-1.1 READme initalize
-1.2 startercode timer
-1.3 test QNA array
-1.4 question variables
-1.5 add scoring
-1.6 add local storage
-1.7 add CSS inital
-1.8 updates to scoring
-1.9 objects appearing
-1.10 quiz box to appear on start
-1.11 instant feedback section
-1.12 high score section
-1.13 progress with errors on high score page
-1.14 questions pushing to screen
-1.15 quiz scoring array
-1.16 question speed fix
-1.14 final score calculation
-1.15 storing initals
-1.16 update questions
-1.17 progress with score array
-1.18 time decrements
-1.19 README updates
 
 ## License
 N/A
