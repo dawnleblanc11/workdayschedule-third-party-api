@@ -7,117 +7,108 @@ $("#currentDay").append(leaddate);
 //var currenthour = 14; use for testing change of time
 var currenthour = moment(now).format("HH");
 
+// uses local storage to populate shedule when reentering
 // var timeslotkeyls = localStorage.getItem(key);
- // var timeslotkeypi = parseInt(timeslotkeyls);
- function AutoRefresh( t ) {
-  setTimeout("location.reload(true);", t);
- };
- var userupdatesarray[] = localStorage.getItem('newtask');
-var userupdatesarrayparsed = JSON.parse(userupdatesarray);
+// var timeslotkeypi = parseInt(timeslotkeyls);
 
-console.log(userupdatesarrayparsed);
-//not sure why each function not working
-//$.each(userupdatesarrayparsed, function(usertimeslotKey,usertaskInput) {
-//$('textarea.background'+ userupdatesarrayparsed.usertimeslotKey +'PMrow').val(userupdatesarrayparsed.usertaskInput);
-//});
-
-$(function()
-{
-for (let i=0; i < userupdatesarrayparsed.length; i++) {
-  $('textarea.background'+ userupdatesarrayparsed[i].usertimeslotKey +'PMrow').val(userupdatesarrayparsed[i].usertaskInput);
-};
-});
+function updateschedule() {
+  console.log(userrevisedtasksarray);
+  var userupdatesarrayparsed = JSON.parse(
+    window.localStorage.getItem("newtask")
+  );
+  console.log(userupdatesarrayparsed);
+  for (i = 0; i < userupdatesarrayparsed.length; i++) {
+    $(
+      "textarea.background" + userupdatesarrayparsed[i].usertimeslotKey + "row"
+    ).val(userupdatesarrayparsed[i].usertaskInput);
+  }
+}
 
 // assign the current class to the hour in the class name
 var timeslots = [
   {
-    timeslotclass: ".background8AMrow",
-    timeslotvalue: 8
+    timeslotclass: ".background08row",
+    timeslotvalue: 8,
   },
   {
-    timeslotclass: ".background9AMrow",
-    timeslotvalue: 9
+    timeslotclass: ".background09row",
+    timeslotvalue: 9,
   },
   {
-    timeslotclass: ".background10AMrow",
-    timeslotvalue: 10
+    timeslotclass: ".background10row",
+    timeslotvalue: 10,
   },
   {
-    timeslotclass: ".background11AMrow",
-    timeslotvalue: 11
+    timeslotclass: ".background11row",
+    timeslotvalue: 11,
   },
   {
-    timeslotclass: ".background12PMrow",
-    timeslotvalue: 12
+    timeslotclass: ".background12row",
+    timeslotvalue: 12,
   },
   {
-    timeslotclass: ".background13PMrow",
-    timeslotvalue: 13
+    timeslotclass: ".background13row",
+    timeslotvalue: 13,
   },
   {
-    timeslotclass: ".background14PMrow",
-    timeslotvalue: 14
+    timeslotclass: ".background14row",
+    timeslotvalue: 14,
   },
   {
-    timeslotclass: ".background15PMrow",
-    timeslotvalue: 15
+    timeslotclass: ".background15row",
+    timeslotvalue: 15,
   },
   {
-    timeslotclass: ".background16PMrow",
-    timeslotvalue: 16
+    timeslotclass: ".background16row",
+    timeslotvalue: 16,
   },
   {
-    timeslotclass: ".background17PMrow",
-    timeslotvalue: 17
+    timeslotclass: ".background17row",
+    timeslotvalue: 17,
   },
   {
-    timeslotclass: ".background18PMrow",
-    timeslotvalue: 18
+    timeslotclass: ".background18row",
+    timeslotvalue: 18,
   },
 ];
 
-//function activitybackgroundcolor() {
-
-// loop through all times to reset appropriate "present", "past", "future"
-// if current hour= class name hour .addclass "present"
-// if current hour< class name hour .addclass "past"
-// if current hour > class name hour .addclass "future"
-// set up as a function to refresh how often?
-for (let i = 0; i < timeslots.length; i++) {
-  //loop through all times to remove class names "present", "past", "future"
-  $(timeslots[i].timeslotclass).removeClass("past present future");
-  // put in appropriate class based on hour
-  if (timeslots[i].timeslotvalue < currenthour) {
-    console.log("past");
-    $(timeslots[i].timeslotclass).addClass("past");
-  } else if (timeslots[i].timeslotvalue > currenthour) {
-    console.log("future");
-    $(timeslots[i].timeslotclass).addClass("future");
-  } else {
-    console.log("present");
-    $(timeslots[i].timeslotclass).addClass("present");
+function taskbackgroundcolor() {
+  // loop through all times to reset appropriate "present", "past", "future"
+  // if current hour= class name hour .addclass "present"
+  // if current hour< class name hour .addclass "past"
+  // if current hour > class name hour .addclass "future"
+  // set up as a function to refresh how often?
+  for (let i = 0; i < timeslots.length; i++) {
+    //loop through all times to remove class names "present", "past", "future"
+    $(timeslots[i].timeslotclass).removeClass("past present future");
+    // put in appropriate class based on hour
+    if (timeslots[i].timeslotvalue < currenthour) {
+      $(timeslots[i].timeslotclass).addClass("past");
+    } else if (timeslots[i].timeslotvalue > currenthour) {
+      $(timeslots[i].timeslotclass).addClass("future");
+    } else {
+      $(timeslots[i].timeslotclass).addClass("present");
+    }
   }
-};
+}
 
-//add a new task
-//recognize save button click
 //creates a key and value to send to storage
-$(function()
-{
-  var userrevisedtasksarray=[];
-$(".saveBtn").on("click", function ()
- {
+var userrevisedtasksarray = [];
+
+function saveTasks() {
   var savedtaskInput = $(this).siblings("textarea").val().trim();
   var timeslotkey = $(this).siblings()[1].className.slice(17, 19);
-  var userrevisedtasks = { 
+  var userrevisedtasks = {
     usertimeslotKey: timeslotkey,
     usertaskInput: savedtaskInput,
   };
   userrevisedtasksarray.push(userrevisedtasks);
-  console.log(userrevisedtasksarray);
-  window.localStorage.setItem('newtask',JSON.stringify(userrevisedtasksarray));
-});
-});
+  window.localStorage.setItem("newtask", JSON.stringify(userrevisedtasksarray));
+  updateschedule();
+}
 
-//not sure why changes from the time before not saved
-// Note: to clean out localStorage.clear();
+taskbackgroundcolor();
+//recognize save button click
+$(".saveBtn").click(saveTasks);
+updateschedule();
+
