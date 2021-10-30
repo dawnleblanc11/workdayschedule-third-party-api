@@ -12,11 +12,9 @@ var currenthour = moment(now).format("HH");
 // var timeslotkeypi = parseInt(timeslotkeyls);
 
 function updateschedule() {
-  console.log(userrevisedtasksarray);
   var userupdatesarrayparsed = JSON.parse(
     window.localStorage.getItem("newtask")
   );
-  console.log(userupdatesarrayparsed);
   for (i = 0; i < userupdatesarrayparsed.length; i++) {
     $(
       "textarea.background" + userupdatesarrayparsed[i].usertimeslotKey + "row"
@@ -111,4 +109,3 @@ taskbackgroundcolor();
 //recognize save button click
 $(".saveBtn").click(saveTasks);
 updateschedule();
-
